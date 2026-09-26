@@ -14,19 +14,28 @@ int main() {
     printf("Enter a program to run\n");
     getline(&program, &len, stdin);
 
+    // Remove the newline character
     char *newline = strchr(program, '\n');
     if (newline) {
       *newline = '\0';
     }
 
+    // Exit the program if the user enters "exit"
+    if (strcmp(program, "exit") == 0) {
+      free(program);
+      break;
+    }
+
     pid_t pid = fork();
 
+    // Parent
     if (pid != 0) {
       int wstatus = 0;
       if (waitpid(pid, &wstatus, 0) == -1) {
         perror("waitpid");
         exit(EXIT_FAILURE);
       }
+      // Child
     } else {
       if (execlp(program, program, (char *)NULL) == -1) {
         perror("execlp");
