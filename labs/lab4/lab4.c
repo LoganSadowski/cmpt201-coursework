@@ -52,4 +52,6 @@ int main() {
 
   print_bytes(block1 + 1, 128 - sizeof(struct header));
   print_bytes(block2 + 1, 128 - sizeof(struct header));
+
+  return 0;
 }
