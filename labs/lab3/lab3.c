@@ -3,6 +3,8 @@
 #include <stdlib.h>
 #include <string.h>
 
+// Print up to 5 strings from the queue
+// If there are less than 5, print all of them
 void print5(char **queue, int head, int tail) {
   for (int i = 0; i < 5 && i <= tail; i++) {
     printf("%s", queue[(head + i) % 5]);
